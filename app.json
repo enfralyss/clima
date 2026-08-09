@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Clima",
+    "slug": "clima",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#1a1f3d",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.enfralyss.clima",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "31aacc80-0b73-4ffb-a3b3-10ae32703adf"
+      }
+    },
+    "owner": "stalker0412"
+  }
+}
