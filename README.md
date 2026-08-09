@@ -2,6 +2,12 @@
 
 App móvil de clima hecha con React Native (Expo). Permite buscar el clima actual de cualquier ciudad y muestra temperatura, humedad y una descripción, junto con sensación térmica, viento, punto de rocío y el pronóstico de las próximas horas. Los datos vienen de la API de [OpenWeatherMap](https://openweathermap.org/).
 
+## Descargar la app
+
+APK de Android listo para instalar: **[clima.apk](https://github.com/enfralyss/clima/releases/latest/download/clima.apk)** (también en [Releases](https://github.com/enfralyss/clima/releases)).
+
+Al ser un APK directo, Android pide confirmar la instalación desde origen desconocido.
+
 ## Funcionalidades
 
 - Búsqueda por ciudad con sugerencias en vivo (geocoding de OpenWeatherMap).
