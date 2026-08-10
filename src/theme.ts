@@ -73,22 +73,24 @@ export const palettes: Record<string, Palette> = {
   },
 };
 
+// la condición manda sobre el día/noche: una noche lluviosa muestra lluvia,
+// las estrellas quedan solo para noches despejadas
 export function paletteForIcon(icon?: string): Palette {
   if (!icon) return palettes.home;
-  if (icon.endsWith('n')) return palettes.night;
   const code = icon.slice(0, 2);
-  if (code === '01' || code === '02') return palettes.sunny;
   if (code === '09' || code === '10' || code === '11') return palettes.rain;
+  if (icon.endsWith('n')) return palettes.night;
+  if (code === '01' || code === '02') return palettes.sunny;
   return palettes.clouds;
 }
 
 export function dotColor(icon?: string): string {
   if (!icon) return '#ffd07a';
-  if (icon.endsWith('n')) return '#b8a8f0';
   const code = icon.slice(0, 2);
-  if (code === '01' || code === '02') return '#ffd07a';
   if (code === '09' || code === '10' || code === '11') return '#8ab4e8';
   if (code === '13') return '#dbe7f5';
+  if (icon.endsWith('n')) return '#b8a8f0';
+  if (code === '01' || code === '02') return '#ffd07a';
   return '#b9c4d6';
 }
 

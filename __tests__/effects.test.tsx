@@ -13,10 +13,18 @@ describe('effectForIcon', () => {
     expect(effectForIcon('09d')).toBe('rain');
     expect(effectForIcon('10d')).toBe('rain');
     expect(effectForIcon('11d')).toBe('rain');
+    expect(effectForIcon('03d')).toBe('clouds');
     expect(effectForIcon('04d')).toBe('clouds');
     expect(effectForIcon('13d')).toBe('clouds');
+    expect(effectForIcon('50d')).toBe('clouds');
     expect(effectForIcon('01n')).toBe('night');
-    expect(effectForIcon('10n')).toBe('night');
+    expect(effectForIcon('02n')).toBe('night');
+  });
+
+  it('la condición manda sobre la noche: lluvia y nubes también de noche', () => {
+    expect(effectForIcon('10n')).toBe('rain');
+    expect(effectForIcon('11n')).toBe('rain');
+    expect(effectForIcon('04n')).toBe('clouds');
   });
 });
 

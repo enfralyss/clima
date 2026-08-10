@@ -4,13 +4,15 @@ import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 
 export type WeatherEffect = 'sun' | 'rain' | 'clouds' | 'night';
 
+// la condición manda sobre el día/noche: llueve igual de noche que de día,
+// las estrellas solo salen con cielo despejado
 export function effectForIcon(icon?: string): WeatherEffect | null {
   if (!icon) return null;
-  if (icon.endsWith('n')) return 'night';
   const code = icon.slice(0, 2);
-  if (code === '01' || code === '02') return 'sun';
   if (code === '09' || code === '10' || code === '11') return 'rain';
-  return 'clouds';
+  if (code === '03' || code === '04' || code === '13' || code === '50') return 'clouds';
+  if (icon.endsWith('n')) return 'night';
+  return 'sun';
 }
 
 // looping value from 0 to 1, with an initial delay to offset each element
@@ -124,14 +126,19 @@ export default function WeatherEffects({ icon }: { icon?: string }) {
   const effect = effectForIcon(icon);
   const { width, height } = useWindowDimensions();
 
+  // aguaceros y tormentas caen con más gotas y más rápido que la lluvia normal
+  const heavyRain = !!icon && (icon.startsWith('09') || icon.startsWith('11'));
+  const dropCount = heavyRain ? 22 : 14;
+  const dropBaseMs = heavyRain ? 650 : 950;
+
   const drops = useMemo(
     () =>
-      Array.from({ length: 14 }, (_, i) => ({
-        x: Math.round((width / 14) * i + Math.random() * 18),
+      Array.from({ length: dropCount }, (_, i) => ({
+        x: Math.round((width / dropCount) * i + Math.random() * 18),
         delay: Math.round(Math.random() * 1400),
-        duration: 950 + Math.round(Math.random() * 550),
+        duration: dropBaseMs + Math.round(Math.random() * 550),
       })),
-    [width]
+    [width, dropCount, dropBaseMs]
   );
 
   const stars = useMemo(
